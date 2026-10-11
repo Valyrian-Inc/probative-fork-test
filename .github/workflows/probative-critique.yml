@@ -1,0 +1,25 @@
+name: Probative critique (fork test)
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review, labeled]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: probative-${{ github.event.pull_request.number }}-${{ github.event.action == 'labeled' && github.event.label.name || 'push' }}
+  cancel-in-progress: true
+
+jobs:
+  critique:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: vedm1/probative@7eb6ca39e758edfb8de632702c389f543eedb227
+        with:
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
+          install-from: git+https://github.com/vedm1/probative@7eb6ca39e758edfb8de632702c389f543eedb227
+          max-files: "5"
+          max-minutes: "10"
