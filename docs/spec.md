@@ -4,5 +4,6 @@ Shoppers abandon checkout because they retype their card details on every order.
 
 NEED: Shoppers need to pay without retyping their card.
 NEED: Shoppers need a one-click checkout button.
+NEED: Shoppers need a faster dashboard widget.
 
 Saved cards will raise conversion by 12% within one quarter.
